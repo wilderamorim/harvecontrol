@@ -1,5 +1,5 @@
-<?php $this->layout('layouts/app', ['title' => $title]) ?>
+<?php $this->layout('layouts/app', compact('title')); ?>
 
-<?= $this->insert('components/balance-chart')?>
+<?= $this->insert('components/balance-chart'); ?>
 
-<?= $this->insert('components/last-invoices')?>
+<?= $this->insert('components/last-invoices', compact('invoices')); ?>

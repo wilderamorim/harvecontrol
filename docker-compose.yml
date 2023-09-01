@@ -2,7 +2,7 @@ version: '3.8'
 services:
   #Reverse Proxy with NGINX
   nginx:
-    image: nginx:1.17-alpine
+    image: nginx:1.25-alpine
     container_name: nginx
     restart: unless-stopped
     ports:
@@ -14,11 +14,13 @@ services:
         - frameworknet
   #PHP Service
   php:
-    image: sergiodanilojr/php-dev
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     container_name: php
     environment:
       - APP_ENV=${APP_ENV}
-      - USER=${APP_USER}
+      - USER=${APP_USER:-dev}
       - PORT=9000
     working_dir: /var/www
     restart: unless-stopped

@@ -3,17 +3,27 @@
 namespace App\Controllers;
 
 use Core\Controller;
-use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
 
 class HomeController extends Controller
 {
     public function index(): ResponseInterface
     {
-        // Consultar o nosso banco de dados
-        // Obter os resultatos
-        // Mandar pra a view para renderizar
+        $invoices = [
+            (object)[
+                'kind' => 'income',
+                'amount' => 'R$ 1.200,00',
+                'description' => 'Desenvolvimento de Website',
+                'due_date' => '30/08/2023',
+            ],
+            (object)[
+                'kind' => 'expense',
+                'amount' => 'R$ 90,00',
+                'description' => 'Energia Elétrica',
+                'due_date' => '30/08/2023',
+            ],
+        ];
 
-        return $this->render('app', ['title' => 'HarveControl']);
+        return $this->view('app', compact('invoices'));
     }
 }
