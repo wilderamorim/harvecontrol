@@ -8,12 +8,10 @@ class View
 {
     private Engine $engine;
 
-    public function __construct()
+    public function __construct(array $data = [])
     {
         $this->engine = new Engine(config('app.view_dir'));
-        $this->engine->addData([
-            'title' => config('app.name'),
-        ]);
+        $this->engine->addData($data);
     }
 
     public function render(string $name, array $data = []): string

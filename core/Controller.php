@@ -4,15 +4,17 @@ namespace Core;
 
 use Laminas\Diactoros\Response;
 
-class Controller
+abstract class Controller
 {
     protected Response $response;
     protected View $view;
 
-    public function __construct()
+    public function __construct(array $data = [])
     {
         $this->response = new Response();
-        $this->view = new View();
+        $this->view = new View(array_merge([
+            'title' => config('app.name'),
+        ], $data));
     }
 
     protected function view(string $name, array $data = []): Response
