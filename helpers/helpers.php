@@ -21,3 +21,10 @@ if (!function_exists('config')) {
         return dot(require $config)->get(implode($separator, $explode));
     }
 }
+
+if (!function_exists('env')) {
+    function env(string $key, $default = null)
+    {
+        return $_ENV[$key] ?? ($default ?? null);
+    }
+}

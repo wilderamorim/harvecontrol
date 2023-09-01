@@ -4,6 +4,8 @@ use League\Route\RouteGroup;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+Dotenv\Dotenv::createImmutable(__DIR__ . '/../')->load();
+
 $router = new League\Route\Router;
 
 $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(

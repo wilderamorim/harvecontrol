@@ -9,6 +9,16 @@ class HomeController extends Controller
 {
     public function index(): ResponseInterface
     {
+        try {
+            $db = \Core\Database\Connection::instance();
+            $query = "SELECT * FROM users";
+            $statement = $db->query($query);
+            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            dd($results);
+        } catch (\Core\Database\Exceptions\DatabaseConnectionException $e) {
+            echo 'Erro ao conectar ao banco de dados: ' . $e->getMessage();
+        }
+
         $invoices = [
             (object)[
                 'kind' => 'income',

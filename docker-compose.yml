@@ -29,7 +29,27 @@ services:
       - ./docker/php.ini:/usr/local/etc/php/conf.d/custom-php.ini
     networks:
       - frameworknet
-
+  #Database Service
+  database:
+    image: mysql
+    restart: always
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+    ports:
+      - "${FORWARD_DB_PORT:-3306}:3306"
+    volumes:
+      - ./.db/:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+      retries: 3
+      timeout: 5s
+    networks:
+      - frameworknet
 networks:
   frameworknet:
     driver: bridge
