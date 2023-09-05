@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Views\View;
 use Laminas\Diactoros\Response;
 
 abstract class Controller

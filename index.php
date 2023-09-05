@@ -1,7 +1,7 @@
 <?php
 
 
-$response = require __DIR__.'/bootstrap/app.php';
+$response = require __DIR__ . '/bootstrap/app.php';
 
 
 // send the response to the browser

@@ -4,7 +4,7 @@ $color = $invoice->kind == 'income' ? 'green' : 'red';
 
 <div class="flex items-center justify-between mx-auto bg-white shadow border-l-4 border-l-<?= $color; ?>-400 rounded px-4 py-4">
     <div class="">
-        <h5 class="font-medium text-xs text-gray-500"><?= $invoice->description; ?></h5>
+        <h5 class="font-medium text-xs text-gray-500"><?= $this->e($invoice->description); ?></h5>
         <p class="text-[8px] text-gray-500">
             <?= $invoice->kind === 'income' ? 'Recebimento' : 'Vencimento'; ?>: <?= $invoice->due_date; ?>
         </p>
