@@ -24,6 +24,6 @@ class HomeController extends Controller
             ],
         ];
 
-        return $this->view('app', compact('invoices'));
+        return $this->view('pages.home', compact('invoices'));
     }
 }

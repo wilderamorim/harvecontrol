@@ -20,7 +20,7 @@ abstract class Controller
 
     protected function view(string $name, array $data = []): Response
     {
-        $view = $this->view->render($name, $data);
+        $view = $this->view->render(str_replace('.', '/', $name), $data);
         $this->response->getBody()->write($view);
         return $this->response;
     }

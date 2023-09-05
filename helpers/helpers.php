@@ -6,7 +6,7 @@ if (!function_exists('config')) {
         $explode = explode($separator, $path);
         $fileName = $explode[0];
 
-        if (!file_exists($config = __DIR__ . '/../config/' . $fileName . ".php")) {
+        if (!file_exists($config = __DIR__ . '/../config/' . $fileName . '.php')) {
             return null;
         }
 

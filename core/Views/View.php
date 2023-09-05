@@ -23,6 +23,11 @@ class View
     protected function registerExtensions(): void
     {
         $extensions = config('view.extensions');
-        array_walk($extensions, fn(string $className): Engine => $this->engine->loadExtension(new $className));
+        array_walk(
+            $extensions,
+            fn(string|object $className): Engine => $this->engine->loadExtension(
+                is_string($className) ? new $className : $className
+            )
+        );
     }
 }
