@@ -17,7 +17,8 @@
         "laminas/laminas-httphandlerrunner": "^2.7",
         "adbario/php-dot-notation": "^3.3",
         "league/plates": "^3.5",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "twig/twig": "^3.7"
     },
     "autoload": {
         "files": [

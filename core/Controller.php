@@ -2,18 +2,20 @@
 
 namespace Core;
 
-use Core\Views\View;
+use Core\Views\Strategies\TemplateStrategyInterface;
 use Laminas\Diactoros\Response;
 
 abstract class Controller
 {
     protected Response $response;
-    protected View $view;
+    protected TemplateStrategyInterface $view;
 
     public function __construct(array $data = [])
     {
         $this->response = new Response();
-        $this->view = new View(array_merge([
+
+        $template = config(sprintf('view.templates.%s.engine', config('view.current')));
+        $this->view = new $template(array_merge([
             'title' => config('app.name'),
         ], $data));
     }

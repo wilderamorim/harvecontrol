@@ -2,13 +2,10 @@
 
 namespace Core\Support;
 
-use Core\Views\ExtensionTrait;
-use League\Plates\Extension\ExtensionInterface;
+use Core\Views\AbstractExtension;
 
-class Str implements ExtensionInterface
+class Str extends AbstractExtension
 {
-    use ExtensionTrait;
-
     /**
      * Truncate a string to a specified number of characters without cutting words.
      *
@@ -19,18 +16,12 @@ class Str implements ExtensionInterface
      */
     public static function truncate(string $text, int $maxLength, string $suffix = '...'): string
     {
-        // Check if the string length is already less than or equal to the maximum length.
         if (mb_strlen($text) <= $maxLength) {
             return $text;
         }
 
-        // Find the last space within the specified length.
         $lastSpace = mb_strrpos(mb_substr($text, 0, $maxLength), ' ');
-
-        // Truncate the string at the last space (or maxLength if no space is found).
         $truncatedText = mb_substr($text, 0, $lastSpace);
-
-        // Append the suffix.
         $truncatedText .= $suffix;
 
         return $truncatedText;
