@@ -28,3 +28,10 @@ if (!function_exists('env')) {
         return $_ENV[$key] ?? ($default ?? null);
     }
 }
+
+if (!function_exists('is_production')) {
+    function is_production(): bool
+    {
+        return config('app.env') === 'production';
+    }
+}
