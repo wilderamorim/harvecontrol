@@ -32,6 +32,6 @@ if (!function_exists('env')) {
 if (!function_exists('is_production')) {
     function is_production(): bool
     {
-        return config('app.env') === 'production';
+        return \Core\Support\Environment::isProduction();
     }
 }

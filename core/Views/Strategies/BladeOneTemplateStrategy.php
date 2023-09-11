@@ -38,12 +38,8 @@ class BladeOneTemplateStrategy implements TemplateStrategyInterface
         $reflection = new \ReflectionClass($extensionClass);
         $methods = $reflection->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_STATIC);
 
-        foreach ($methods as $method) {
-            if ($method->class !== $extensionClass) {
-                continue;
-            }
-            $this->registerDirective($extensionClass, $method);
-        }
+        $qualifiedMethods = array_filter($methods, fn(\ReflectionMethod $method): bool => $method->class === $extensionClass);
+        array_walk($qualifiedMethods, fn(\ReflectionMethod $method) => $this->registerDirective($extensionClass, $method));
     }
 
     protected function registerDirective(string $extensionClass, \ReflectionMethod $method): void
