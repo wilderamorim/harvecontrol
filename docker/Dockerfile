@@ -49,6 +49,3 @@ RUN chown -R $UID:$UID /var/www/
 USER $USER
 
 ENV PORT=$PORT
-
-#RUN chmod +x docker/entrypoint.sh
-ENTRYPOINT [ "docker/entrypoint.sh" ]
